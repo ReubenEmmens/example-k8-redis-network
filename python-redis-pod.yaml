@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: python-redis-app
+  name: python-redis-pod
+  namespace: python-redis
+spec:
+  containers:
+    - name: python-redis-container
+      image: reubenemmens/redis-kube:1.2
+      command: ["python", "main.py"]
+      env:
+        - name: HOSTNAME
+          value: redis-service
+        - name: PORT
+          value: "6379"
+  restartPolicy: Never
